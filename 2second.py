@@ -1,7 +1,5 @@
 import numpy as np
-import sympy as sp
-from numpy import ndarray
-from sympy import log, sqrt
+from sympy import log, sqrt, diff, integrate, symbols
 from scipy.misc import derivative
 import warnings
 from scipy.optimize import minimize
@@ -30,10 +28,10 @@ sympy выведите на экран символьное представле
 """
 print("\n\t\tЗадание 2\n")
 
-x_sym = sp.symbols('x')
+x_sym = symbols('x')
 f_sym = log(sqrt(x_sym))
-print("Символьное представление первой производной: ", sp.diff(f_sym, x_sym))
-print("Символьное представление первой производной: ", sp.diff(f_sym, x_sym, n=2))
+print("Символьное представление первой производной: ", diff(f_sym, x_sym))
+print("Символьное представление первой производной: ", diff(f_sym, x_sym, n=2))
 
 """
 3) Вычислите определенный интеграл от a до b с помощью scipy функции
@@ -60,7 +58,7 @@ print(f"Определенный интеграл по методу прямоу
 """
 print("\n\t\tЗадание 4\n")
 
-print(f"Неопределенный интеграл: {sp.integrate(f_sym, x_sym)}")
+print(f"Неопределенный интеграл: {integrate(f_sym, x_sym)}")
 
 """
 5) Решите задачу нелинейной оптимизации для вашего варианта.
@@ -69,7 +67,7 @@ print(f"Неопределенный интеграл: {sp.integrate(f_sym, x_sy
 print("\n\t\tЗадание 5\n")
 
 
-def equation(x):
+def objective(x):
     return (x[0] - 3) ** 2 + (x[1] - 1) ** 2
 
 
@@ -80,8 +78,7 @@ constraints = [
     {'type': 'ineq', 'fun': lambda x: x[1]},
 ]
 bounds = [(0, None), (0, None)]
-x_start = np.array([0.5, 0])
-result = minimize(equation, x_start, constraints=constraints)
-print("Оптимальное значение функции:", result.fun)
-print("Оптимальное решение:", result.x)
-# print(result)
+x_start = np.array([0, 0])
+result = minimize(objective, x_start, bounds=bounds, constraints=constraints)
+print(f"Оптимальное значение функции: {result.fun:.5f}")
+print(f"Оптимальное решение: x1 = {result.x[0]:.5f}, x2 = {result.x[1]:.5f}")
