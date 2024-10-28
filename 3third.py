@@ -3,6 +3,7 @@ import sys
 import numpy as np
 from scipy.linalg import lu
 from scipy.stats import mode, chisquare
+from sympy.codegen.ast import float16
 
 """
 1) Взять свою матрицу из 1.10
@@ -86,4 +87,4 @@ p-value для нулевой гипотезы: “Распределение в
 """
 print("\n\t\tЗадание 6\n")
 
-print(f"Значение p-value: {chisquare(uniform_vector).pvalue.astype(int)}")
+print(f"Значение p-value: {chisquare(normal_vector).pvalue:.10f}")

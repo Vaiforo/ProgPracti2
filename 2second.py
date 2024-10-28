@@ -74,11 +74,10 @@ def objective(x):
 constraints = [
     {'type': 'ineq', 'fun': lambda x: -2 * x[0] + x[1] - 2},
     {'type': 'ineq', 'fun': lambda x: 3 * x[1] - 10},
-    {'type': 'ineq', 'fun': lambda x: x[0]},
-    {'type': 'ineq', 'fun': lambda x: x[1]},
 ]
 bounds = [(0, None), (0, None)]
-x_start = np.array([0, 0])
+x_start = np.array([-1, -1])
 result = minimize(objective, x_start, bounds=bounds, constraints=constraints)
 print(f"Оптимальное значение функции: {result.fun:.5f}")
 print(f"Оптимальное решение: x1 = {result.x[0]:.5f}, x2 = {result.x[1]:.5f}")
+print(result)

@@ -28,7 +28,8 @@ np.savetxt(sys.stdout, A, fmt="%3d")
 """
 print("\n\n\t3 задание\n")
 
-A = A * 2.5 - 5
+A = A * 2.5
+A[0] = A[0] - 5
 A = A.astype(int)
 print("Матрица A*2.5 и A[0] - 5:")
 np.savetxt(sys.stdout, A, fmt="%4d")
