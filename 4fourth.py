@@ -27,14 +27,14 @@ print(f"Значение функции для всех точек X:\n{y_values
 """
 print("\n\t\tЗадание 2\n")
 
-_, axes1 = plt.subplots(figsize=(10, 6))
-axes1.plot(x_parts, y_values, label='y = log(sqrt(x))', color='r')
+plt.figure(figsize=(10, 6))
+plt.plot(x_parts, y_values, label='y = log(sqrt(x))', color='r')
 
-axes1.set_title('График функции: y = log(sqrt(x))', fontsize=16)
-axes1.set_xlabel('x', fontsize=14)
-axes1.set_xlabel('y', fontsize=14)
+plt.suptitle('График функции: y = log(sqrt(x))', fontsize=16)
+plt.xlabel('x', fontsize=14)
+plt.xlabel('y', fontsize=14)
 
-axes1.legend(fontsize=12)
+plt.legend(fontsize=12)
 
 plt.show()
 
@@ -166,10 +166,17 @@ plt.show()
 """
 print("\n\t\tЗадание 7\n")
 
-# figure, axes = plt.subplots(figsize=(10, 10))
-#
-# figure.suptitle('Сетка графиков 2х2', fontsize=20)
-# figure.add_subplot(2, 2, 1)
-# figure.add_axes(axes1)
-#
-# plt.show()
+figure, axes = plt.subplots(figsize=(10, 10))
+
+figure.suptitle('Сетка графиков 2х2', fontsize=20)
+figure.add_subplot(2, 2, 1)
+
+plt.plot(x_parts, y_values, label='y = log(sqrt(x))', color='r')
+
+plt.suptitle('График функции: y = log(sqrt(x))', fontsize=16)
+plt.xlabel('x', fontsize=14)
+plt.xlabel('y', fontsize=14)
+
+plt.legend(fontsize=12)
+
+plt.show()
