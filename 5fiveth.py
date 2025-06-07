@@ -104,3 +104,4 @@ print(sorted_result[['name', 'ticket']])
 """
 print("\n\t\tЗадание 10\n")
 
+

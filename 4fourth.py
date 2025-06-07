@@ -32,7 +32,7 @@ plt.plot(x_parts, y_values, label='y = log(sqrt(x))', color='r')
 
 plt.suptitle('График функции: y = log(sqrt(x))', fontsize=16)
 plt.xlabel('x', fontsize=14)
-plt.xlabel('y', fontsize=14)
+plt.ylabel('y', fontsize=14)
 
 plt.legend(fontsize=12)
 
@@ -166,17 +166,81 @@ plt.show()
 """
 print("\n\t\tЗадание 7\n")
 
-figure, axes = plt.subplots(figsize=(10, 10))
+figure, axes = plt.subplots(2, 2, figsize=(12, 10))
+figure.suptitle("Plot map 2x2", fontsize=16)
 
-figure.suptitle('Сетка графиков 2х2', fontsize=20)
-figure.add_subplot(2, 2, 1)
+axes[0, 0].plot(x_parts, y_values, label='y = log(sqrt(x))', color='r')
+axes[0, 0].set_title("График функции: y = log(sqrt(x))")
+axes[0, 0].set_xlabel("x", fontsize=14)
+axes[0, 0].set_ylabel("y", fontsize=14)
+axes[0, 0].legend(fontsize=12)
+axes[0, 0].set_facecolor((0.52, 0.53, 0.74))  # Для любого из графиков установите цвет фона
 
-plt.plot(x_parts, y_values, label='y = log(sqrt(x))', color='r')
+axes[0, 1].scatter(x_parts, y_values, label='y = log(sqrt(x))', color=(0.9, 0, 0.1), marker='8')
+axes[0, 1].set_title("График функции: y = log(sqrt(x))", fontsize=16)
+axes[0, 1].set_xlabel("x", fontsize=14)
+axes[0, 1].set_ylabel("y", fontsize=14)
+axes[0, 1].legend(fontsize=12)
+axes[0, 1].grid(color='gray', alpha=0.5)
 
-plt.suptitle('График функции: y = log(sqrt(x))', fontsize=16)
-plt.xlabel('x', fontsize=14)
-plt.xlabel('y', fontsize=14)
+colors = [(0.93, 0.32, 0.32), (0.36, 0.73, 0.32), (0.32, 0.44, 0.73), (1.00, 0.98, 0.32)]
+axes[1, 0].pie(counters, labels=values, colors=colors, autopct='%d%%')
+axes[1, 0].set_title("Pie chart of number distribution")
 
-plt.legend(fontsize=12)
+ax3d = figure.add_subplot(2, 2, 4, projection='3d')
+surf = ax3d.plot_surface(x, y, z, cmap='viridis', edgecolor='black')
+figure.colorbar(surf, ax=ax3d)
+ax3d.set_xlabel('x')
+ax3d.set_ylabel('y')
+ax3d.set_zlabel('Objective function values')
+ax3d.set_title('Plot of the objective function')
 
 plt.show()
+
+"""
+8) Посмотрите доступные в pyplot стили оформления графиков.
+Попробуйте 3 любых стиля на ваш выбор. Для каждого стиля:
+установите его, отобразите сетку графиков из пункта 7. Таким образом,
+всего за это задание сетка из 4 графиков должна быть отображена 4 раза.
+Замечание: если установка стиля не изменяет внешнего вида графика -
+не расстраивайтесь. Многие стили предназначены для установки
+цветовой палитры, а по заданию вы сами устанавливали цвета. Если не
+видите изменений - просто переходите к следующему стилю.
+"""
+print("\n\t\tЗадание 8\n")
+
+styles = ['Solarize_Light2', 'dark_background', 'grayscale']
+
+for style in styles:
+    plt.style.use(style)
+
+    fig, axs = plt.subplots(2, 2, figsize=(12, 10))
+    fig.suptitle(f"Сетка графиков 2x2 | {style}", fontsize=16)
+
+    axs[0, 0].plot(x_parts, y_values, label='y = log(sqrt(x))', color='r')
+    axs[0, 0].set_title("График функции: y = log(sqrt(x))")
+    axs[0, 0].set_xlabel("x", fontsize=14)
+    axs[0, 0].set_ylabel("y", fontsize=14)
+    axs[0, 0].legend(fontsize=12)
+    axs[0, 0].set_facecolor((0.52, 0.53, 0.74))
+
+    axs[0, 1].scatter(x_parts, y_values, label='y = log(sqrt(x))', color=(0.9, 0, 0.1), marker='8')
+    axs[0, 1].set_title("График функции: y = log(sqrt(x))", fontsize=16)
+    axs[0, 1].set_xlabel("x", fontsize=14)
+    axs[0, 1].set_ylabel("y", fontsize=14)
+    axs[0, 1].legend(fontsize=12)
+    axs[0, 1].grid(color='gray', alpha=0.5)
+
+    colors = [(0.93, 0.32, 0.32), (0.36, 0.73, 0.32), (0.32, 0.44, 0.73), (1.00, 0.98, 0.32)]
+    axs[1, 0].pie(counters, labels=values, colors=colors, autopct='%d%%')
+    axs[1, 0].set_title("Pie chart of number distribution")
+
+    ax3d = fig.add_subplot(2, 2, 4, projection='3d')
+    surf = ax3d.plot_surface(x, y, z, cmap='viridis', edgecolor='black')
+    fig.colorbar(surf, ax=ax3d)
+    ax3d.set_xlabel('x')
+    ax3d.set_ylabel('y')
+    ax3d.set_zlabel('Objective function values')
+    ax3d.set_title('Plot of the objective function')
+
+    plt.show()
